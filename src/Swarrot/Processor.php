@@ -16,6 +16,8 @@ class Processor implements ProcessorInterface
 
     public function __invoke(Message $message, array $options)
     {
+        echo "Send message... ";
+
         $body = json_decode($message->getBody(), true);
 
         $swiftMessage = \Swift_Message::newInstance($body['subject'])
@@ -25,5 +27,7 @@ class Processor implements ProcessorInterface
         ;
 
         $this->swiftMailer->send($swiftMessage);
+
+        echo "OK\n";
     }
 }

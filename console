@@ -5,33 +5,53 @@ if (!$loader = include __DIR__.'/vendor/autoload.php') {
     die('You must set up the project dependencies.');
 }
 
-use Cilex\Application;
+use Symfony\Component\Console\Application;
 use Swarrot\Consumer;
 use Swarrot\Processor;
+use Swarrot\AMQP\PeclPackageMessageProvider;
+
+$config = array(
+    'amqp' => array(
+        'host'     => '127.0.0.1',
+        'port'     => 5672,
+        'login'    => 'guest',
+        'password' => 'guest',
+        'vhost'    => '/',
+    ),
+    'mailer' => array(
+        'host'       => '127.0.0.1',
+        'port'       => '1025',
+        'username'   => null,
+        'password'   => null,
+        'encryption' => null,
+        'auth_mode'  => null
+    ),
+);
+
+// We create a connection to an AMQP broker and retrieve the queue "mail"
+$connection = new \AMQPConnection($config['amqp']);
+$connection->connect();
+$channel = new \AMQPChannel($connection);
+$queue = new \AMQPQueue($channel);
+$queue->setName('mail');
+
+// We create a basic processor which use \SwiftMailer to send mails
+$processor = new Processor(
+    \Swift_Mailer::newInstance(
+        \Swift_SmtpTransport::newInstance(
+            $config['mailer']['host'],
+            $config['mailer']['port']
+        )
+    )
+);
+
+// We can now create a Consumer with a message Provider and a Processor
+$consumer = new Consumer(
+    new PeclPackageMessageProvider($queue),
+    $processor
+);
 
 $app = new Application('Swarrot MailWorker');
-
-$app['config'] = include __DIR__.'/config.php';
-
-// Create AMQP Connection
-$app['amqp.connection'] = function ($c) {
-    return new \AMQPConnection($c['config']['amqp']);
-};
-
-// Create mailer
-$app['mailer'] = function ($c) {
-    $transport = \Swift_SmtpTransport::newInstance(
-        $c['config']['mailer']['host'],
-        $c['config']['mailer']['port']
-    );
-
-    return \Swift_Mailer::newInstance($transport);
-};
-
-// Create processor
-$app['processor'] = function ($c) {
-    return new Processor($c['mailer']);
-};
-
-$app->command(new Swarrot\Command\MailCommand());
+$command = new Swarrot\Command\MailCommand($consumer);
+$app->add($command);
 $app->run();
