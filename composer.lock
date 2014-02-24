@@ -11,16 +11,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swarrot/swarrot.git",
-                "reference": "3c1c00c09e078c92c2f43a37c07d25ff3537de12"
+                "reference": "deaba77b7e694fbd324c5e55881fefb4dcb60bbd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/3c1c00c09e078c92c2f43a37c07d25ff3537de12",
-                "reference": "3c1c00c09e078c92c2f43a37c07d25ff3537de12",
+                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/deaba77b7e694fbd324c5e55881fefb4dcb60bbd",
+                "reference": "deaba77b7e694fbd324c5e55881fefb4dcb60bbd",
                 "shasum": ""
             },
             "require": {
-                "ext-amqp": "*",
                 "php": ">=5.3.3",
                 "symfony/options-resolver": "~2.4"
             },
@@ -53,7 +52,7 @@
                 "swarrot",
                 "worker"
             ],
-            "time": "2014-02-24 13:39:26"
+            "time": "2014-02-24 21:50:48"
         },
         {
             "name": "swiftmailer/swiftmailer",

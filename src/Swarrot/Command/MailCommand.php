@@ -8,9 +8,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Swarrot\Consumer;
 use Symfony\Component\Console\Command\Command;
-use Swarrot\AMQP\MessageProviderInterface;
+use Swarrot\Broker\MessageProviderInterface;
 use Swarrot\Processor;
-use Swarrot\AMQP\PeclPackageMessageProvider;
+use Swarrot\Broker\PeclPackageMessageProvider;
 
 class MailCommand extends Command
 {

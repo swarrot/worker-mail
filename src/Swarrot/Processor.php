@@ -2,7 +2,7 @@
 
 namespace Swarrot;
 
-use Swarrot\AMQP\Message;
+use Swarrot\Broker\Message;
 use Swarrot\Processor\ProcessorInterface;
 
 class Processor implements ProcessorInterface
