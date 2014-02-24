@@ -13,7 +13,9 @@
     "require": {
         "php": ">=5.3.3",
         "ext-amqp": "*",
-        "swarrot/swarrot": "dev-master"
+        "swarrot/swarrot": "dev-master",
+        "cilex/cilex": "~1.0",
+        "swiftmailer/swiftmailer": "~4.1"
     },
     "config": {
         "bin-dir": "bin"

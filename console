@@ -1,0 +1,37 @@
+#!/usr/bin/env php
+<?php
+
+if (!$loader = include __DIR__.'/vendor/autoload.php') {
+    die('You must set up the project dependencies.');
+}
+
+use Cilex\Application;
+use Swarrot\Consumer;
+use Swarrot\Processor;
+
+$app = new Application('Swarrot MailWorker');
+
+$app['config'] = include __DIR__.'/config.php';
+
+// Create AMQP Connection
+$app['amqp.connection'] = function ($c) {
+    return new \AMQPConnection($c['config']['amqp']);
+};
+
+// Create mailer
+$app['mailer'] = function ($c) {
+    $transport = \Swift_SmtpTransport::newInstance(
+        $c['config']['mailer']['host'],
+        $c['config']['mailer']['port']
+    );
+
+    return \Swift_Mailer::newInstance($transport);
+};
+
+// Create processor
+$app['processor'] = function ($c) {
+    return new Processor($c['mailer']);
+};
+
+$app->command(new Swarrot\Command\MailCommand());
+$app->run();
