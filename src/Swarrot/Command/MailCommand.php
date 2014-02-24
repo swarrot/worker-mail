@@ -9,23 +9,17 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Swarrot\Consumer;
 use Symfony\Component\Console\Command\Command;
 use Swarrot\AMQP\MessageProviderInterface;
+use Swarrot\Processor;
+use Swarrot\AMQP\PeclPackageMessageProvider;
 
 class MailCommand extends Command
 {
-    protected $consumer;
-
-    public function __construct(Consumer $consumer)
-    {
-        $this->consumer = $consumer;
-
-        parent::__construct();
-    }
-
     public function configure()
     {
         $this
             ->setName('send-mails')
-            ->setDescription('Send mails retrieved from queue mail')
+            ->setDescription('Send mails retrieved from a queue')
+            ->addArgument('queue', InputArgument::REQUIRED, 'The queue to consume')
         ;
     }
 
@@ -34,6 +28,25 @@ class MailCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        return $this->consumer->consume(array());
+        // We create a connection to an AMQP broker and retrieve the queue "mail"
+        $connection = new \AMQPConnection();
+        $connection->connect();
+        $channel = new \AMQPChannel($connection);
+        $queue = new \AMQPQueue($channel);
+        $queue->setName('mail');
+
+        // We create a basic processor which use \SwiftMailer to send mails
+        $processor = new Processor(
+            \Swift_Mailer::newInstance(
+                \Swift_SmtpTransport::newInstance('127.0.0.1', 1025)
+            )
+        );
+
+        // We can now create a Consumer with a message Provider and a Processor
+        $consumer = new Consumer(
+            new PeclPackageMessageProvider($queue),
+            $processor
+        );
+        return $consumer->consume(array());
     }
 }

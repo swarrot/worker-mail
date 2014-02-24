@@ -6,52 +6,7 @@ if (!$loader = include __DIR__.'/vendor/autoload.php') {
 }
 
 use Symfony\Component\Console\Application;
-use Swarrot\Consumer;
-use Swarrot\Processor;
-use Swarrot\AMQP\PeclPackageMessageProvider;
-
-$config = array(
-    'amqp' => array(
-        'host'     => '127.0.0.1',
-        'port'     => 5672,
-        'login'    => 'guest',
-        'password' => 'guest',
-        'vhost'    => '/',
-    ),
-    'mailer' => array(
-        'host'       => '127.0.0.1',
-        'port'       => '1025',
-        'username'   => null,
-        'password'   => null,
-        'encryption' => null,
-        'auth_mode'  => null
-    ),
-);
-
-// We create a connection to an AMQP broker and retrieve the queue "mail"
-$connection = new \AMQPConnection($config['amqp']);
-$connection->connect();
-$channel = new \AMQPChannel($connection);
-$queue = new \AMQPQueue($channel);
-$queue->setName('mail');
-
-// We create a basic processor which use \SwiftMailer to send mails
-$processor = new Processor(
-    \Swift_Mailer::newInstance(
-        \Swift_SmtpTransport::newInstance(
-            $config['mailer']['host'],
-            $config['mailer']['port']
-        )
-    )
-);
-
-// We can now create a Consumer with a message Provider and a Processor
-$consumer = new Consumer(
-    new PeclPackageMessageProvider($queue),
-    $processor
-);
 
 $app = new Application('Swarrot MailWorker');
-$command = new Swarrot\Command\MailCommand($consumer);
-$app->add($command);
+$app->add(new Swarrot\Command\MailCommand());
 $app->run();
