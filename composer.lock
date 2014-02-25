@@ -3,20 +3,108 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d8e17d6984d10375ba9b39131274a762",
+    "hash": "466fe780128feafe27d48120cd6ecf03",
     "packages": [
+        {
+            "name": "psr/log",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/log.git",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/log/zipball/fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "reference": "fe0936ee26643249e916849d48e3a51d5f5e278b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Psr\\Log\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "http://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for logging libraries",
+            "keywords": [
+                "log",
+                "psr",
+                "psr-3"
+            ],
+            "time": "2012-12-21 11:40:51"
+        },
+        {
+            "name": "swarrot/ack-processor",
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swarrot/ack-processor.git",
+                "reference": "db2e56d28cb768e811c8d66493b1a715d3facefc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swarrot/ack-processor/zipball/db2e56d28cb768e811c8d66493b1a715d3facefc",
+                "reference": "db2e56d28cb768e811c8d66493b1a715d3facefc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "psr/log": "~1.0",
+                "swarrot/swarrot": "dev-master"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "2.0.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Swarrot": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Dolbeau",
+                    "homepage": "http://odolbeau.fr/"
+                }
+            ],
+            "description": "A swarrot processor for ack or nack messages",
+            "keywords": [
+                "processor",
+                "swarrot"
+            ],
+            "time": "2014-02-25 00:31:54"
+        },
         {
             "name": "swarrot/swarrot",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swarrot/swarrot.git",
-                "reference": "deaba77b7e694fbd324c5e55881fefb4dcb60bbd"
+                "reference": "da5ace48b6ca11b0fcaeba69bb084e3aac7845e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/deaba77b7e694fbd324c5e55881fefb4dcb60bbd",
-                "reference": "deaba77b7e694fbd324c5e55881fefb4dcb60bbd",
+                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/da5ace48b6ca11b0fcaeba69bb084e3aac7845e5",
+                "reference": "da5ace48b6ca11b0fcaeba69bb084e3aac7845e5",
                 "shasum": ""
             },
             "require": {
@@ -52,7 +140,7 @@
                 "swarrot",
                 "worker"
             ],
-            "time": "2014-02-24 21:50:48"
+            "time": "2014-02-24 23:10:35"
         },
         {
             "name": "swiftmailer/swiftmailer",

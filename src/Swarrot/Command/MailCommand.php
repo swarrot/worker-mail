@@ -11,6 +11,7 @@ use Symfony\Component\Console\Command\Command;
 use Swarrot\Broker\MessageProviderInterface;
 use Swarrot\Processor;
 use Swarrot\Broker\PeclPackageMessageProvider;
+use Swarrot\Processor\Stack;
 
 class MailCommand extends Command
 {
@@ -35,17 +36,22 @@ class MailCommand extends Command
         $queue = new \AMQPQueue($channel);
         $queue->setName('mail');
 
+        $messageProvider = new PeclPackageMessageProvider($queue);
+
         // We create a basic processor which use \SwiftMailer to send mails
         $processor = new Processor(
             \Swift_Mailer::newInstance(
                 \Swift_SmtpTransport::newInstance('127.0.0.1', 1025)
             )
         );
+        $stack = (new Stack\Builder())
+            ->push('Swarrot\Processor\AckProcessor', $messageProvider)
+        ;
 
         // We can now create a Consumer with a message Provider and a Processor
         $consumer = new Consumer(
-            new PeclPackageMessageProvider($queue),
-            $processor
+            $messageProvider,
+            $stack->resolve($processor)
         );
         return $consumer->consume(array());
     }
