@@ -99,12 +99,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swarrot/instant-retry-processor.git",
-                "reference": "c2202bff6454d14be699614ae6c7d6d473f0bfb1"
+                "reference": "477dc43c9a558eca4869c5890615f198ca40a83c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swarrot/instant-retry-processor/zipball/c2202bff6454d14be699614ae6c7d6d473f0bfb1",
-                "reference": "c2202bff6454d14be699614ae6c7d6d473f0bfb1",
+                "url": "https://api.github.com/repos/swarrot/instant-retry-processor/zipball/477dc43c9a558eca4869c5890615f198ca40a83c",
+                "reference": "477dc43c9a558eca4869c5890615f198ca40a83c",
                 "shasum": ""
             },
             "require": {
@@ -141,7 +141,7 @@
                 "processor",
                 "swarrot"
             ],
-            "time": "2014-02-28 16:31:52"
+            "time": "2014-03-01 09:31:07"
         },
         {
             "name": "swarrot/swarrot",
