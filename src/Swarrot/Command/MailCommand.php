@@ -34,7 +34,7 @@ class MailCommand extends Command
         $connection->connect();
         $channel = new \AMQPChannel($connection);
         $queue = new \AMQPQueue($channel);
-        $queue->setName('mail');
+        $queue->setName($input->getArgument('queue'));
 
         $messageProvider = new PeclPackageMessageProvider($queue);
 
@@ -46,6 +46,7 @@ class MailCommand extends Command
         );
         $stack = (new Stack\Builder())
             ->push('Swarrot\Processor\AckProcessor', $messageProvider)
+            ->push('Swarrot\Processor\InstantRetryProcessor')
         ;
 
         // We can now create a Consumer with a message Provider and a Processor

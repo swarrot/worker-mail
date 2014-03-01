@@ -15,6 +15,7 @@
         "ext-amqp": "*",
         "swarrot/swarrot": "dev-master",
         "swarrot/ack-processor": "~1.0",
+        "swarrot/instant-retry-processor": "dev-master",
         "symfony/console": "~2.4",
         "swiftmailer/swiftmailer": "~4.1"
     },

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "466fe780128feafe27d48120cd6ecf03",
+    "hash": "df44fea0fe2b0384140b3544269ba198",
     "packages": [
         {
             "name": "psr/log",
@@ -94,17 +94,67 @@
             "time": "2014-02-25 00:31:54"
         },
         {
+            "name": "swarrot/instant-retry-processor",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swarrot/instant-retry-processor.git",
+                "reference": "c2202bff6454d14be699614ae6c7d6d473f0bfb1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swarrot/instant-retry-processor/zipball/c2202bff6454d14be699614ae6c7d6d473f0bfb1",
+                "reference": "c2202bff6454d14be699614ae6c7d6d473f0bfb1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "psr/log": "~1.0",
+                "swarrot/swarrot": "dev-master"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "2.0.*@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Swarrot": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Olivier Dolbeau",
+                    "homepage": "http://odolbeau.fr/"
+                }
+            ],
+            "description": "A swarrot processor for immediately recall processor when an error append",
+            "keywords": [
+                "processor",
+                "swarrot"
+            ],
+            "time": "2014-02-28 16:31:52"
+        },
+        {
             "name": "swarrot/swarrot",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swarrot/swarrot.git",
-                "reference": "da5ace48b6ca11b0fcaeba69bb084e3aac7845e5"
+                "reference": "0d4e64cf6ad5e83646410995bc8345de0499fb28"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/da5ace48b6ca11b0fcaeba69bb084e3aac7845e5",
-                "reference": "da5ace48b6ca11b0fcaeba69bb084e3aac7845e5",
+                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/0d4e64cf6ad5e83646410995bc8345de0499fb28",
+                "reference": "0d4e64cf6ad5e83646410995bc8345de0499fb28",
                 "shasum": ""
             },
             "require": {
@@ -140,7 +190,7 @@
                 "swarrot",
                 "worker"
             ],
-            "time": "2014-02-24 23:10:35"
+            "time": "2014-02-28 17:14:40"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -311,7 +361,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "swarrot/swarrot": 20
+        "swarrot/swarrot": 20,
+        "swarrot/instant-retry-processor": 20
     },
     "platform": {
         "php": ">=5.3.3",
