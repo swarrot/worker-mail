@@ -54,6 +54,7 @@ class MailCommand extends Command
             $messageProvider,
             $stack->resolve($processor)
         );
+
         return $consumer->consume(array());
     }
 }
