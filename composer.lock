@@ -3,8 +3,75 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "df44fea0fe2b0384140b3544269ba198",
+    "hash": "6f50b35a11d5e03e7d7ed6851b215f27",
     "packages": [
+        {
+            "name": "monolog/monolog",
+            "version": "1.7.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Seldaek/monolog.git",
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/6225b22de9dcf36546be3a0b2fa8e3d986153f57",
+                "reference": "6225b22de9dcf36546be3a0b2fa8e3d986153f57",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "~2.4.8",
+                "doctrine/couchdb": "dev-master",
+                "mlehner/gelf-php": "1.0.*",
+                "phpunit/phpunit": "~3.7.0",
+                "raven/raven": "0.5.*",
+                "ruflin/elastica": "0.90.*"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "Allow sending log messages to AWS services like DynamoDB",
+                "doctrine/couchdb": "Allow sending log messages to a CouchDB server",
+                "ext-amqp": "Allow sending log messages to an AMQP server (1.0+ required)",
+                "ext-mongo": "Allow sending log messages to a MongoDB server",
+                "mlehner/gelf-php": "Allow sending log messages to a GrayLog2 server",
+                "raven/raven": "Allow sending log messages to a Sentry server",
+                "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Monolog": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be",
+                    "homepage": "http://seld.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Sends your logs to files, sockets, inboxes, databases and various web services",
+            "homepage": "http://github.com/Seldaek/monolog",
+            "keywords": [
+                "log",
+                "logging",
+                "psr-3"
+            ],
+            "time": "2013-11-14 19:48:31"
+        },
         {
             "name": "psr/log",
             "version": "1.0.0",
@@ -44,125 +111,35 @@
             "time": "2012-12-21 11:40:51"
         },
         {
-            "name": "swarrot/ack-processor",
-            "version": "v1.0.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swarrot/ack-processor.git",
-                "reference": "db2e56d28cb768e811c8d66493b1a715d3facefc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swarrot/ack-processor/zipball/db2e56d28cb768e811c8d66493b1a715d3facefc",
-                "reference": "db2e56d28cb768e811c8d66493b1a715d3facefc",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "psr/log": "~1.0",
-                "swarrot/swarrot": "dev-master"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "2.0.*@dev"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Swarrot": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Olivier Dolbeau",
-                    "homepage": "http://odolbeau.fr/"
-                }
-            ],
-            "description": "A swarrot processor for ack or nack messages",
-            "keywords": [
-                "processor",
-                "swarrot"
-            ],
-            "time": "2014-02-25 00:31:54"
-        },
-        {
-            "name": "swarrot/instant-retry-processor",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swarrot/instant-retry-processor.git",
-                "reference": "477dc43c9a558eca4869c5890615f198ca40a83c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swarrot/instant-retry-processor/zipball/477dc43c9a558eca4869c5890615f198ca40a83c",
-                "reference": "477dc43c9a558eca4869c5890615f198ca40a83c",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3",
-                "psr/log": "~1.0",
-                "swarrot/swarrot": "dev-master"
-            },
-            "require-dev": {
-                "phpspec/phpspec": "2.0.*@dev"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Swarrot": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Olivier Dolbeau",
-                    "homepage": "http://odolbeau.fr/"
-                }
-            ],
-            "description": "A swarrot processor for immediately recall processor when an error append",
-            "keywords": [
-                "processor",
-                "swarrot"
-            ],
-            "time": "2014-03-01 09:31:07"
-        },
-        {
             "name": "swarrot/swarrot",
             "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swarrot/swarrot.git",
-                "reference": "0d4e64cf6ad5e83646410995bc8345de0499fb28"
+                "reference": "4940b35d48d1b43ee65c1b690f899c8d0357668e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/0d4e64cf6ad5e83646410995bc8345de0499fb28",
-                "reference": "0d4e64cf6ad5e83646410995bc8345de0499fb28",
+                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/4940b35d48d1b43ee65c1b690f899c8d0357668e",
+                "reference": "4940b35d48d1b43ee65c1b690f899c8d0357668e",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.3",
+                "psr/log": "~1.0",
                 "symfony/options-resolver": "~2.4"
             },
+            "replace": {
+                "swarrot/ack-processor": "self.version",
+                "swarrot/exception-catcher-processor": "self.version",
+                "swarrot/instant-retry-processor": "self.version",
+                "swarrot/max-execution-time-processor": "self.version",
+                "swarrot/max-messages-processor": "self.version",
+                "swarrot/signal-handler-processor": "self.version"
+            },
             "require-dev": {
-                "phpspec/phpspec": "2.0.*@dev"
+                "phpspec/prophecy": "~1.1",
+                "phpunit/phpunit": "~3.7"
             },
             "type": "library",
             "extra": {
@@ -190,7 +167,7 @@
                 "swarrot",
                 "worker"
             ],
-            "time": "2014-02-28 17:14:40"
+            "time": "2014-03-09 22:04:02"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -299,6 +276,122 @@
             "time": "2014-02-11 13:52:09"
         },
         {
+            "name": "symfony/event-dispatcher",
+            "version": "v2.4.2",
+            "target-dir": "Symfony/Component/EventDispatcher",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/EventDispatcher.git",
+                "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/4708b8cd41984a5ba29fe7dd40716f7f761ac501",
+                "reference": "4708b8cd41984a5ba29fe7dd40716f7f761ac501",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/dependency-injection": "~2.0"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "http://symfony.com",
+            "time": "2014-02-11 13:52:09"
+        },
+        {
+            "name": "symfony/monolog-bridge",
+            "version": "v2.4.2",
+            "target-dir": "Symfony/Bridge/Monolog",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/MonologBridge.git",
+                "reference": "041d2c9ead709bed730eda07882b62dba8233ba2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/MonologBridge/zipball/041d2c9ead709bed730eda07882b62dba8233ba2",
+                "reference": "041d2c9ead709bed730eda07882b62dba8233ba2",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": "~1.3",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/console": "~2.3",
+                "symfony/event-dispatcher": "~2.2",
+                "symfony/http-kernel": "~2.2"
+            },
+            "suggest": {
+                "symfony/console": "For the possibility to show log messages in console commands depending on verbosity settings. You need version ~2.3 of the console for it.",
+                "symfony/event-dispatcher": "Needed when using log messages in console commands",
+                "symfony/http-kernel": "For using the debugging handlers together with the response life cycle of the HTTP kernel."
+            },
+            "type": "symfony-bridge",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Bridge\\Monolog\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Monolog Bridge",
+            "homepage": "http://symfony.com",
+            "time": "2014-01-07 13:28:54"
+        },
+        {
             "name": "symfony/options-resolver",
             "version": "v2.4.2",
             "target-dir": "Symfony/Component/OptionsResolver",
@@ -361,8 +454,7 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "swarrot/swarrot": 20,
-        "swarrot/instant-retry-processor": 20
+        "swarrot/swarrot": 20
     },
     "platform": {
         "php": ">=5.3.3",

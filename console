@@ -6,7 +6,20 @@ if (!$loader = include __DIR__.'/vendor/autoload.php') {
 }
 
 use Symfony\Component\Console\Application;
+use Monolog\Logger;
+use Symfony\Bridge\Monolog\Handler\ConsoleHandler;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 $app = new Application('Swarrot MailWorker');
-$app->add(new Swarrot\Command\MailCommand());
+
+$eventDispatcher = new EventDispatcher();
+$app->setDispatcher($eventDispatcher);
+
+$consoleHandler = new ConsoleHandler();
+$eventDispatcher->addSubscriber($consoleHandler);
+
+$logger = new Logger('worker.mail');
+$logger->pushHandler($consoleHandler);
+
+$app->add(new Swarrot\Command\MailCommand($logger));
 $app->run();

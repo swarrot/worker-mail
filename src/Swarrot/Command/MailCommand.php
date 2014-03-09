@@ -12,9 +12,19 @@ use Swarrot\Broker\MessageProviderInterface;
 use Swarrot\Processor;
 use Swarrot\Broker\PeclPackageMessageProvider;
 use Swarrot\Processor\Stack;
+use Psr\Log\LoggerInterface;
 
 class MailCommand extends Command
 {
+    protected $logger;
+
+    public function __construct(LoggerInterface $logger = null)
+    {
+        $this->logger = $logger;
+
+        parent::__construct();
+    }
+
     public function configure()
     {
         $this
@@ -42,11 +52,16 @@ class MailCommand extends Command
         $processor = new Processor(
             \Swift_Mailer::newInstance(
                 \Swift_SmtpTransport::newInstance('127.0.0.1', 1025)
-            )
+            ),
+            $this->logger
         );
         $stack = (new Stack\Builder())
-            ->push('Swarrot\Processor\AckProcessor', $messageProvider)
-            ->push('Swarrot\Processor\InstantRetryProcessor')
+            ->push('Swarrot\Processor\SignalHandler\SignalHandlerProcessor', $this->logger)
+            ->push('Swarrot\Processor\ExceptionCatcher\ExceptionCatcherProcessor', $this->logger)
+            ->push('Swarrot\Processor\MaxMessages\MaxMessagesProcessor', $this->logger)
+            ->push('Swarrot\Processor\MaxExecutionTime\MaxExecutionTimeProcessor', $this->logger)
+            ->push('Swarrot\Processor\Ack\AckProcessor', $messageProvider, $this->logger)
+            ->push('Swarrot\Processor\InstantRetry\InstantRetryProcessor', $this->logger)
         ;
 
         // We can now create a Consumer with a message Provider and a Processor

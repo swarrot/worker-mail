@@ -14,10 +14,10 @@
         "php": ">=5.3.3",
         "ext-amqp": "*",
         "swarrot/swarrot": "dev-master",
-        "swarrot/ack-processor": "~1.0",
-        "swarrot/instant-retry-processor": "dev-master",
         "symfony/console": "~2.4",
-        "swiftmailer/swiftmailer": "~4.1"
+        "swiftmailer/swiftmailer": "~4.1",
+        "symfony/monolog-bridge": "~2.4",
+        "symfony/event-dispatcher": "~2.4"
     },
     "config": {
         "bin-dir": "bin"

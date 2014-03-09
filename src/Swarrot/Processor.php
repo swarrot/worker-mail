@@ -4,24 +4,27 @@ namespace Swarrot;
 
 use Swarrot\Broker\Message;
 use Swarrot\Processor\ProcessorInterface;
+use Psr\Log\LoggerInterface;
 
 class Processor implements ProcessorInterface
 {
     protected $swiftMailer;
+    protected $logger;
 
-    public function __construct(\Swift_Mailer $swiftMailer)
+    public function __construct(\Swift_Mailer $swiftMailer, LoggerInterface $logger)
     {
         $this->swiftMailer = $swiftMailer;
+        $this->logger      = $logger;
     }
 
-    public function __invoke(Message $message, array $options)
+    public function process(Message $message, array $options)
     {
-        echo "Send message... ";
-
         $body = json_decode($message->getBody(), true);
 
         if (!is_array($body)) {
-            echo "NOK\n";
+            $this->logger->error(
+                'Unable to send message. Message body MUST be an array containing keys "subject", "to", "body".'
+            );
 
             throw new \InvalidArgumentException(
                 'Message body MUST be an array containing keys "subject", "to", "body".'
@@ -30,8 +33,6 @@ class Processor implements ProcessorInterface
 
         foreach (array('subject', 'to', 'body') as $key) {
             if (!array_key_exists($key, $body)) {
-                echo "NOK\n";
-
                 throw new \InvalidArgumentException(sprintf(
                     'No key "%s" defined in message. Existing: [%s]',
                     $key,
@@ -47,7 +48,5 @@ class Processor implements ProcessorInterface
         ;
 
         $this->swiftMailer->send($swiftMessage);
-
-        echo "OK\n";
     }
 }
