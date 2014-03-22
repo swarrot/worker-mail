@@ -67,7 +67,9 @@ class MailCommand extends Command
         // We can now create a Consumer with a message Provider and a Processor
         $consumer = new Consumer(
             $messageProvider,
-            $stack->resolve($processor)
+            $stack->resolve($processor),
+            null,
+            $this->logger
         );
 
         return $consumer->consume(array());

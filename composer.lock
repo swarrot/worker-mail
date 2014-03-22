@@ -116,12 +116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/swarrot/swarrot.git",
-                "reference": "4940b35d48d1b43ee65c1b690f899c8d0357668e"
+                "reference": "68e7eee74b9d404ea9cac266c53f5886bdd8d840"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/4940b35d48d1b43ee65c1b690f899c8d0357668e",
-                "reference": "4940b35d48d1b43ee65c1b690f899c8d0357668e",
+                "url": "https://api.github.com/repos/swarrot/swarrot/zipball/68e7eee74b9d404ea9cac266c53f5886bdd8d840",
+                "reference": "68e7eee74b9d404ea9cac266c53f5886bdd8d840",
                 "shasum": ""
             },
             "require": {
@@ -139,7 +139,12 @@
             },
             "require-dev": {
                 "phpspec/prophecy": "~1.1",
-                "phpunit/phpunit": "~3.7"
+                "phpunit/phpunit": "~3.7",
+                "videlalvaro/php-amqplib": "~2.0"
+            },
+            "suggest": {
+                "pecl-amqp": "*",
+                "videlalvaro/php-amqplib": "~2.0"
             },
             "type": "library",
             "extra": {
@@ -167,7 +172,7 @@
                 "swarrot",
                 "worker"
             ],
-            "time": "2014-03-09 22:04:02"
+            "time": "2014-03-22 18:26:33"
         },
         {
             "name": "swiftmailer/swiftmailer",
