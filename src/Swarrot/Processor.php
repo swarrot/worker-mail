@@ -36,7 +36,7 @@ class Processor implements ProcessorInterface
                 throw new \InvalidArgumentException(sprintf(
                     'No key "%s" defined in message. Existing: [%s]',
                     $key,
-                    implode(', ', $body)
+                    implode(', ', array_keys($body))
                 ));
             }
         }
