@@ -10,7 +10,7 @@ use Swarrot\Consumer;
 use Symfony\Component\Console\Command\Command;
 use Swarrot\Broker\MessageProviderInterface;
 use Swarrot\Processor;
-use Swarrot\Broker\PeclPackageMessageProvider;
+use Swarrot\Broker\MessageProvider\PeclPackageMessageProvider;
 use Swarrot\Processor\Stack;
 use Psr\Log\LoggerInterface;
 
